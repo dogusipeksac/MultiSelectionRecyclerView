@@ -15,7 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements TvShowsListener{
     RecyclerView tvShowRecyclerView;
     List<TvShow> tvShows;
-    private Button buttonAddToWatchList;
+    private Button buttonAddToWatchList,buttonClearToWatchList;
     private TvShowAdapter tvShowAdapter;
 
     //https://picsum.photos/seed/picsum/200/300
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements TvShowsListener{
         setContentView(R.layout.activity_main);
         tvShowRecyclerView=findViewById(R.id.tvShowsRecyclerView);
         buttonAddToWatchList=findViewById(R.id.buttonAddToWatchList);
+        buttonClearToWatchList=findViewById(R.id.buttonClearToWatchList);
         createList();
         tvShowRecyclerView.setHasFixedSize(true);
         tvShowRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,6 +47,13 @@ public class MainActivity extends AppCompatActivity implements TvShowsListener{
                 Toast.makeText(MainActivity.this, tvShowNames.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        buttonClearToWatchList.setOnClickListener(v -> {
+            List<TvShow> clearList=tvShowAdapter.clear();
+            buttonAddToWatchList.setVisibility(View.GONE);
+            buttonClearToWatchList.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "Clean", Toast.LENGTH_SHORT).show();
+            tvShows=clearList;
+        });
     }
     private void  createList(){
         tvShows=new ArrayList<>();
@@ -60,8 +68,11 @@ public class MainActivity extends AppCompatActivity implements TvShowsListener{
     public void onTvShowAction(boolean selected) {
         if(selected){
             buttonAddToWatchList.setVisibility(View.VISIBLE);
+            buttonClearToWatchList.setVisibility(View.VISIBLE);
         }else{
             buttonAddToWatchList.setVisibility(View.GONE);
+            buttonClearToWatchList.setVisibility(View.GONE);
+
         }
     }
 }

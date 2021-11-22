@@ -51,20 +51,40 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:layout_below="@+id/layoutHeader"
-        android:layout_above="@id/buttonAddToWatchList"
+        android:layout_above="@id/linear"
         />
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/buttonAddToWatchList"
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:background="@color/colorAccent"
-        android:text="Add To Watchlist"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:visibility="gone"
-        />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/buttonAddToWatchList"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="@color/colorAccent"
+            android:text="Add To Watchlist"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
+            />
+        <Button
+            android:layout_marginTop="3dp"
+            android:id="@+id/buttonClearToWatchList"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="@color/colorAccent"
+            android:text="Clear"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

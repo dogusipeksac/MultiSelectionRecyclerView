@@ -25,6 +25,7 @@ public class TvShowAdapter extends  RecyclerView.Adapter<TvShowAdapter.ViewHolde
     private TvShowsListener tvShowsListener;
     private Context context;
 
+
     public TvShowAdapter(List<TvShow> tvShows, TvShowsListener tvShowsListener,Context context) {
         this.tvShows = tvShows;
         this.tvShowsListener = tvShowsListener;
@@ -39,6 +40,20 @@ public class TvShowAdapter extends  RecyclerView.Adapter<TvShowAdapter.ViewHolde
                 selectedTvShows.add(tvShow);
             }
         }
+        return selectedTvShows;
+    }
+    public List<TvShow> clear(){
+
+        TvShow.clear=true;
+        List<TvShow> selectedTvShows=new ArrayList<>();
+        for(TvShow tvShow:tvShows){
+            if(tvShow.isSelected()){
+                tvShow.setSelected(false);
+                selectedTvShows.remove(tvShow);
+            }
+
+        }
+        notifyDataSetChanged();
         return selectedTvShows;
     }
 
@@ -84,7 +99,7 @@ public class TvShowAdapter extends  RecyclerView.Adapter<TvShowAdapter.ViewHolde
             textCreatedBy.setText(tvShow.getCreatedBy());
             textStory.setText(tvShow.getStory());
             ratingBar.setRating(tvShow.getRating());
-            if(tvShow.isSelected()){
+            if(tvShow.isSelected()&& !TvShow.clear ){
                 viewBackground.setBackgroundResource(R.drawable.tv_show_selected_background);
                 imageSelected.setVisibility(View.VISIBLE);
             }else{
@@ -94,7 +109,7 @@ public class TvShowAdapter extends  RecyclerView.Adapter<TvShowAdapter.ViewHolde
             layoutTvShow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(tvShow.isSelected()){
+                    if(tvShow.isSelected() ){
                         viewBackground.setBackgroundResource(R.drawable.tv_show_bacground);
                         imageSelected.setVisibility(View.GONE);
                         tvShow.setSelected(false);

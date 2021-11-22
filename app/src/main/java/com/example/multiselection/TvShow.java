@@ -6,6 +6,7 @@ public class TvShow {
     private String image;
     private boolean isSelected=false;
     private float rating;
+    public static boolean clear=false;
 
     public TvShow(String name, String createdBy, String story, String image ,float rating) {
         this.name = name;
@@ -15,8 +16,10 @@ public class TvShow {
         this.rating = rating;
     }
 
-    public TvShow() {
+    public boolean isClear() {
+        return clear;
     }
+
 
     public String getName() {
         return name;
